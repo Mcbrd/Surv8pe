@@ -79,14 +79,7 @@
 
         </div>
         @Html.Partial("_LoginPartial")
-    {    
        
-    
-       
-
-
-
-
         </div>
     <div class="container body-content">
         @RenderBody()
@@ -95,10 +88,7 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-   
-
-    </script>
-    @Scripts.Render("~/bundles/jquery")
+       @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
