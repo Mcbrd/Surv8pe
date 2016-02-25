@@ -10,107 +10,107 @@ using SurvApe.Models;
 
 namespace SurvApe.Controllers
 {
-    public class PollstersController : Controller
+    public class TrueOrFalseQuestionsController : Controller
     {
         private SurvApeDB db = new SurvApeDB();
 
-        // GET: Pollsters
+        // GET: TrueOrFalseQuestions
         public ActionResult Index()
         {
-            return View(db.Pollsters.ToList());
+            return View(db.TrueOrFalseQuestions.ToList());
         }
 
-        // GET: Pollsters/Details/5
+        // GET: TrueOrFalseQuestions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pollster pollster = db.Pollsters.Find(id);
-            if (pollster == null)
+            TrueOrFalseQuestion trueOrFalseQuestion = db.TrueOrFalseQuestions.Find(id);
+            if (trueOrFalseQuestion == null)
             {
                 return HttpNotFound();
             }
-            return View(pollster);
+            return View(trueOrFalseQuestion);
         }
 
-        // GET: Pollsters/Create
+        // GET: TrueOrFalseQuestions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Pollsters/Create
+        // POST: TrueOrFalseQuestions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FirstName,MiddleName,LastName,Email,Phone,Address,State,Country,Zipcode,Age,Gender,Company,JobTitle,Salary")] Pollster pollster)
+        public ActionResult Create([Bind(Include = "ID,Text,Type,Answer")] TrueOrFalseQuestion trueOrFalseQuestion)
         {
             if (ModelState.IsValid)
             {
-                db.Pollsters.Add(pollster);
+                db.TrueOrFalseQuestions.Add(trueOrFalseQuestion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(pollster);
+            return View(trueOrFalseQuestion);
         }
 
-        // GET: Pollsters/Edit/5
+        // GET: TrueOrFalseQuestions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pollster pollster = db.Pollsters.Find(id);
-            if (pollster == null)
+            TrueOrFalseQuestion trueOrFalseQuestion = db.TrueOrFalseQuestions.Find(id);
+            if (trueOrFalseQuestion == null)
             {
                 return HttpNotFound();
             }
-            return View(pollster);
+            return View(trueOrFalseQuestion);
         }
 
-        // POST: Pollsters/Edit/5
+        // POST: TrueOrFalseQuestions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,MiddleName,LastName,Email,Phone,Address,State,Country,Zipcode,Age,Gender,Company,JobTitle,Salary")] Pollster pollster)
+        public ActionResult Edit([Bind(Include = "ID,Text,Type,Answer")] TrueOrFalseQuestion trueOrFalseQuestion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pollster).State = EntityState.Modified;
+                db.Entry(trueOrFalseQuestion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(pollster);
+            return View(trueOrFalseQuestion);
         }
 
-        // GET: Pollsters/Delete/5
+        // GET: TrueOrFalseQuestions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pollster pollster = db.Pollsters.Find(id);
-            if (pollster == null)
+            TrueOrFalseQuestion trueOrFalseQuestion = db.TrueOrFalseQuestions.Find(id);
+            if (trueOrFalseQuestion == null)
             {
                 return HttpNotFound();
             }
-            return View(pollster);
+            return View(trueOrFalseQuestion);
         }
 
-        // POST: Pollsters/Delete/5
+        // POST: TrueOrFalseQuestions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pollster pollster = db.Pollsters.Find(id);
-            db.Pollsters.Remove(pollster);
+            TrueOrFalseQuestion trueOrFalseQuestion = db.TrueOrFalseQuestions.Find(id);
+            db.TrueOrFalseQuestions.Remove(trueOrFalseQuestion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

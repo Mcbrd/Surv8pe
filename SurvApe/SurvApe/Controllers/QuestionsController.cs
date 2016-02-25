@@ -54,7 +54,7 @@ namespace SurvApe.Models
                 return RedirectToAction("Index");
             }
 
-            return View(question);
+            return View();//Question
         }
 
         // GET: Questions/Edit/5

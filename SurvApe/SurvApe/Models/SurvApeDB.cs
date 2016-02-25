@@ -27,5 +27,7 @@ namespace SurvApe.Models
         public System.Data.Entity.DbSet<SurvApe.Models.Pollster> Pollsters { get; set; }
 
         public System.Data.Entity.DbSet<SurvApe.Models.Survey> Surveys { get; set; }
+
+        public System.Data.Entity.DbSet<SurvApe.Models.TrueOrFalseQuestion> TrueOrFalseQuestions { get; set; }
     }
 }

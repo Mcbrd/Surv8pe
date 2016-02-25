@@ -176,12 +176,25 @@
     <Compile Include="Controllers\PossibleAnswersController.cs" />
     <Compile Include="Controllers\RespondantsController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
+    <Compile Include="Controllers\TrueOrFalseQuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201602231825103_InitialCreate.cs" />
     <Compile Include="Migrations\201602231825103_InitialCreate.Designer.cs">
       <DependentUpon>201602231825103_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602241827203_update.cs" />
+    <Compile Include="Migrations\201602241827203_update.Designer.cs">
+      <DependentUpon>201602241827203_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602242208429_TF.cs" />
+    <Compile Include="Migrations\201602242208429_TF.Designer.cs">
+      <DependentUpon>201602242208429_TF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602251818227_question type.cs" />
+    <Compile Include="Migrations\201602251818227_question type.Designer.cs">
+      <DependentUpon>201602251818227_question type.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -193,9 +206,11 @@
     <Compile Include="Models\PossibleAnswer.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Models\QuestionType.cs" />
     <Compile Include="Models\Respondant.cs" />
     <Compile Include="Models\SurvApeDB.cs" />
     <Compile Include="Models\Survey.cs" />
+    <Compile Include="Models\TrueOrFalseQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -294,6 +309,12 @@
     <Content Include="Views\Surveys\Details.cshtml" />
     <Content Include="Views\Surveys\Edit.cshtml" />
     <Content Include="Views\Surveys\Index.cshtml" />
+    <Content Include="Views\Shared\_SurveyView.cshtml" />
+    <Content Include="Views\TrueOrFalseQuestions\Create.cshtml" />
+    <Content Include="Views\TrueOrFalseQuestions\Delete.cshtml" />
+    <Content Include="Views\TrueOrFalseQuestions\Details.cshtml" />
+    <Content Include="Views\TrueOrFalseQuestions\Edit.cshtml" />
+    <Content Include="Views\TrueOrFalseQuestions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,6 +330,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602231825103_InitialCreate.resx">
       <DependentUpon>201602231825103_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602241827203_update.resx">
+      <DependentUpon>201602241827203_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602242208429_TF.resx">
+      <DependentUpon>201602242208429_TF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602251818227_question type.resx">
+      <DependentUpon>201602251818227_question type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

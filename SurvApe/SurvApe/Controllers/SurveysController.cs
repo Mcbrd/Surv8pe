@@ -13,12 +13,27 @@ namespace SurvApe.Controllers
     public class SurveysController : Controller
     {
         private SurvApeDB db = new SurvApeDB();
-
+        Models.TrueOrFalseQuestion tf = new TrueOrFalseQuestion();
         // GET: Surveys
         public ActionResult Index()
         {
-            return View();
-          //  return View(db.Surveys.ToList()); not working yet
+            //List<TrueOrFalseQuestion> list = new List<TrueOrFalseQuestion>();
+
+            //list.Add(new TrueOrFalseQuestion { ID = 1, Text = "Aquafina", Answer = false });
+              //new TrueOrFalseQuestion { ID = 2, Text = "Mulshi Springs", Answer = false },
+              //new TrueOrFalseQuestion { ID = 3, Text = "Alfa Blue", Answer = false },
+              //new TrueOrFalseQuestion { ID = 4, Text = "Atlas Premium", Answer = false },
+              //new TrueOrFalseQuestion { ID = 5, Text = "Bailley", Answer = false },
+              //new TrueOrFalseQuestion { ID = 6, Text = "Bisleri", Answer = false },
+              //new TrueOrFalseQuestion { ID = 7, Text = "Himalayan", Answer = false },
+              //new TrueOrFalseQuestion { ID = 8, Text = "Cool Valley", Answer = false },
+              //new TrueOrFalseQuestion { ID = 9, Text = "Dew Drops", Answer = false },
+              //new TrueOrFalseQuestion { ID = 10, Text = "Dislaren", Answer = false });
+
+            
+
+          //  return View();
+            return View(db.Surveys.ToList());
         }
 
         // GET: Surveys/Details/5
