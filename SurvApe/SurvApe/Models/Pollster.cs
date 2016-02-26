@@ -22,6 +22,7 @@ namespace SurvApe.Models
         public string Company { get; set; }
         public string JobTitle { get; set; }
         public int Salary { get; set; }
+        public string UserID { get; set; }
 
     }
 }

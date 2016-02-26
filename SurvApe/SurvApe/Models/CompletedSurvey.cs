@@ -18,5 +18,7 @@ namespace SurvApe.Models
         public string AnswerGivenString { get; set; }
         public int AnswerGivenInt { get; set; }
         public bool AnswerGivenBool { get; set; }
+        public string UserID { get; set; }
+
     }
 }

@@ -9,6 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+
 <table class="table">
     <tr>
         <th>
@@ -41,7 +43,9 @@
         </td>
     </tr>
 }
-    @Html.Partial("_SurveyView")
+
 
 
 </table>
+@Html.Partial("EditorTemplates/TrueOrFalseQuestion")
+@*@Html.Partial("_SurveyView")*@

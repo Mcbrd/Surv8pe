@@ -12,8 +12,8 @@ namespace SurvApe.Models
         public int ID { get; set; }
         public string Title { get; set; }
         public virtual Pollster pollster { get; set; }
-
-        public ICollection<TrueOrFalseQuestion> TF{ get; set; }//Icollection or List
+        public string UserID { get; set; }
+        public List<TrueOrFalseQuestion> TF{ get; set; }//Icollection or List
         public Survey()
         {
             TF = new List<TrueOrFalseQuestion>();

@@ -7,13 +7,13 @@ namespace SurvApe.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class TF : IMigrationMetadata
+    public sealed partial class UserID : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TF));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserID));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602242208429_TF"; }
+            get { return "201602261453191_UserID"; }
         }
         
         string IMigrationMetadata.Source

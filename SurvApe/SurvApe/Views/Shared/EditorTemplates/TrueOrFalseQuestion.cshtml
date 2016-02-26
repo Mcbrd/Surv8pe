@@ -1,0 +1,69 @@
+﻿
+
+
+
+@model IEnumerable<SurvApe.Models.TrueOrFalseQuestion>
+        <ol class="listTrue">
+
+            @foreach (var item in Model)
+
+            {
+                @Html.Label(item.Text)
+                <li class="listTrue">
+                
+                <b>True</b> @Html.RadioButton(item.Text, item.Answer)
+                <b>False</b> @Html.RadioButton(item.Text, item.Answer)
+                </li>
+            }
+
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@{ Layout = "~/Views/Shared/EditorTemplates/TrueOrFalseQuestion.cshtml"; }
+
+    @{
+        bool? value = false;
+        if (ViewData.Model != null)
+        {
+            value = Convert.ToBoolean(ViewData.Model, System.Globalization.CultureInfo.InvariantCulture);
+        }
+    }
+
+    <b>Yes</b> @Html.RadioButton("", "True", value ?? true) &nbsp;&nbsp;
+    <b>No</b> @Html.RadioButton("", "False", !value ?? false)*@
+
+
+
+
+                        @*@Html.RadioButtonFor(item.Answer => item.Answer, true)
+            }*@
+
+
+
+    @*<fieldset>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Text)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Answer)
+                @Html.ValidationMessageFor(model => model.Answer)
+            </div>
+
+            <p>
+                <inputtype ="submit" value="Save" />
+            </p>
+        </fieldset>*@

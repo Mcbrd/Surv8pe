@@ -6,12 +6,16 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SurvApe.Models
 {
     public class QuestionsController : Controller
     {
         private SurvApeDB db = new SurvApeDB();
+
+
 
         // GET: Questions
         public ActionResult Index()
@@ -45,13 +49,32 @@ namespace SurvApe.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool")] Question question)
+        public ActionResult Create([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool,UserID")] Question question )
         {
+            ApplicationDbContext context = new ApplicationDbContext();
+            Pollster pol = new Pollster();
+            Question questionProp = new Question();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var user = UserManager.FindById(User.Identity.GetUserId());
+
+            //var Users = context.Users.Select(x => new SelectListItem
+            //{
+            //    Value = x.UserName,
+            //    Text = x.UserName
+            //});
             if (ModelState.IsValid)
             {
+                string UserID = user.Id;
+                question.UserID = UserID;
+                //do it right, not replace Primary Key
+              //  question.pollster.ID = Convert.ToInt32(pollster_ID);
+                //int pollster_ID = question.pollster.ID;
+                //pollster_ID = User.Identity.GetUserId();
+
+
                 db.Questions.Add(question);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index" );
             }
 
             return View();//Question

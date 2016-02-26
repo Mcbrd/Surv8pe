@@ -16,6 +16,7 @@ namespace SurvApe.Models
         public int AnswerOptionInt { get; set; }
         public bool AnswerOptionBool { get; set; }
         public QuestionType Type { get; set; }
+        public string UserID { get; set; }
 
 
 

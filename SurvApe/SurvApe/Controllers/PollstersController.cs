@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SurvApe.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SurvApe.Controllers
 {
@@ -17,6 +19,15 @@ namespace SurvApe.Controllers
         // GET: Pollsters
         public ActionResult Index()
         {
+            //ApplicationDbContext context = new ApplicationDbContext();
+            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            //var Users = context.Users.Select(x => new SelectListItem
+            //{
+            //    Value = x.UserName,
+            //    Text = x.UserName
+            //});
+
+
             return View(db.Pollsters.ToList());
         }
 

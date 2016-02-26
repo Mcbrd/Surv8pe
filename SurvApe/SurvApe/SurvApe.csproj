@@ -180,21 +180,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602231825103_InitialCreate.cs" />
-    <Compile Include="Migrations\201602231825103_InitialCreate.Designer.cs">
-      <DependentUpon>201602231825103_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201602252355238_redo.cs" />
+    <Compile Include="Migrations\201602252355238_redo.Designer.cs">
+      <DependentUpon>201602252355238_redo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602241827203_update.cs" />
-    <Compile Include="Migrations\201602241827203_update.Designer.cs">
-      <DependentUpon>201602241827203_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602242208429_TF.cs" />
-    <Compile Include="Migrations\201602242208429_TF.Designer.cs">
-      <DependentUpon>201602242208429_TF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602251818227_question type.cs" />
-    <Compile Include="Migrations\201602251818227_question type.Designer.cs">
-      <DependentUpon>201602251818227_question type.cs</DependentUpon>
+    <Compile Include="Migrations\201602261453191_UserID.cs" />
+    <Compile Include="Migrations\201602261453191_UserID.Designer.cs">
+      <DependentUpon>201602261453191_UserID.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -315,6 +307,8 @@
     <Content Include="Views\TrueOrFalseQuestions\Details.cshtml" />
     <Content Include="Views\TrueOrFalseQuestions\Edit.cshtml" />
     <Content Include="Views\TrueOrFalseQuestions\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TrueOrFalseQuestion.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\boolView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,17 +322,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602231825103_InitialCreate.resx">
-      <DependentUpon>201602231825103_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602252355238_redo.resx">
+      <DependentUpon>201602252355238_redo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602241827203_update.resx">
-      <DependentUpon>201602241827203_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602242208429_TF.resx">
-      <DependentUpon>201602242208429_TF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602251818227_question type.resx">
-      <DependentUpon>201602251818227_question type.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602261453191_UserID.resx">
+      <DependentUpon>201602261453191_UserID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
