@@ -10,15 +10,34 @@
 
     for (var i = 0; i < Model.Count; i++)
     {
+
         <ol>
             <li>
-                @Html.DisplayFor(item => item[i].Title)
-            </li>
+                @Html.DisplayFor(item => item[i].QuestionText)
+           </li >
             <li>
+
                 <b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
                 <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
                 @Html.HiddenFor(x => x[i].ID)
-                @Html.HiddenFor(x => x[i].Answers)
+                @Html.HiddenFor(x => x[i].AnswerOptionBool)
+                @Html.HiddenFor(x => x[i].QuestionText)
+                @Html.HiddenFor(x => x[i].UserID)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </li>
         </ol>
     }

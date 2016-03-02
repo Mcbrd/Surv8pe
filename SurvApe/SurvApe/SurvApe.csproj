@@ -220,6 +220,26 @@
     <Compile Include="Migrations\201603021517002_survey id for question.Designer.cs">
       <DependentUpon>201603021517002_survey id for question.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603022047000_virtual list.cs" />
+    <Compile Include="Migrations\201603022047000_virtual list.Designer.cs">
+      <DependentUpon>201603022047000_virtual list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603022137420_answer.cs" />
+    <Compile Include="Migrations\201603022137420_answer.Designer.cs">
+      <DependentUpon>201603022137420_answer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603022151007_int.cs" />
+    <Compile Include="Migrations\201603022151007_int.Designer.cs">
+      <DependentUpon>201603022151007_int.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603022231418_answer1.cs" />
+    <Compile Include="Migrations\201603022231418_answer1.Designer.cs">
+      <DependentUpon>201603022231418_answer1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603022350419_respondant id.cs" />
+    <Compile Include="Migrations\201603022350419_respondant id.Designer.cs">
+      <DependentUpon>201603022350419_respondant id.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -387,6 +407,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603021517002_survey id for question.resx">
       <DependentUpon>201603021517002_survey id for question.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603022047000_virtual list.resx">
+      <DependentUpon>201603022047000_virtual list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603022137420_answer.resx">
+      <DependentUpon>201603022137420_answer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603022151007_int.resx">
+      <DependentUpon>201603022151007_int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603022231418_answer1.resx">
+      <DependentUpon>201603022231418_answer1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603022350419_respondant id.resx">
+      <DependentUpon>201603022350419_respondant id.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

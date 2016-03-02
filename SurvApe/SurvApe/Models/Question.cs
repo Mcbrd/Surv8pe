@@ -13,7 +13,6 @@ namespace SurvApe.Models
         public virtual Pollster pollster { get; set; }
         public string QuestionText { get; set; }
         public string AnswerOptionString { get; set; }
-        public int AnswerOptionInt { get; set; }
         public bool AnswerOptionBool { get; set; }
         public QuestionType Type { get; set; }
         public string UserID { get; set; }

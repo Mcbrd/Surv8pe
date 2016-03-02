@@ -24,15 +24,6 @@ namespace SurvApe.Controllers
 
             return View(db.Surveys.ToList());
 
-                    //public ActionResult Index(int id)
-
-            //Survey survey = db.Surveys.Single(x => x.ID == id)/*.Single(x => x.ID == id)*/;
-            //var surveyViewModel = new SurveyViewModel(survey);
-            //return View(surveyViewModel);
-
-
-
-            //return View();
         }
 
         // GET: Surveys/Details/5
@@ -78,14 +69,6 @@ namespace SurvApe.Controllers
 
             return View(survey);
 
-            //if (ModelState.IsValid)
-            //{
-            //    db.Surveys.Add(survey);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-
-            //return View(survey);
         }
 
         // GET: Surveys/Edit/5

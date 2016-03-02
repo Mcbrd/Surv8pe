@@ -18,24 +18,46 @@ namespace SurvApe.Models
 
 
         // GET: Questions
-        public ActionResult Index(Survey survey, Question question)
+
+        public ActionResult Index(int? id)
         {
-            survey = (Survey)TempData["survey"];
-            List<Question> questionlist = new List<Question>();
-            foreach( Question item in db.Questions)
+            if (id == null)
             {
-                if(survey.ID ==item.SurveyID)
-                {
-                    questionlist.Add(item);
-
-                    return View(questionlist.ToList());
-
-                }
-                         
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(db.Questions.ToList());            
+            List<Question> viewList = new List<Question>();
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+         
+            foreach(Question item in survey.questionList)
+            {
+                viewList.Add(item);
+            }
+            
+            return View(viewList);
 
         }
+        //public ActionResult Index(Survey survey, Question question)
+        //{
+        //    survey = (Survey)TempData["survey"];
+        //    List<Question> localquestionlist = new List<Question>();
+        //    foreach( Question item in db.Questions)
+        //    {
+        //        if(survey.ID ==item.SurveyID)
+        //        {
+        //            localquestionlist.Add(item);
+
+        //            return View(localquestionlist.ToList());
+
+        //        }
+
+        //    }
+        //    return View(db.Questions.ToList());            
+
+        //}
 
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
@@ -71,6 +93,7 @@ namespace SurvApe.Models
             ApplicationDbContext context = new ApplicationDbContext();
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var user = UserManager.FindById(User.Identity.GetUserId());
+
 
             if (ModelState.IsValid)
             {
@@ -152,23 +175,27 @@ namespace SurvApe.Models
         public ActionResult Submit(List<Question> model)
         {
             ApplicationDbContext context = new ApplicationDbContext();
-
+            CompletedSurvey cs = new CompletedSurvey();
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var user = UserManager.FindById(User.Identity.GetUserId());
-
+            var user = UserManager.FindById(User.Identity.GetUserId());          
             if (ModelState.IsValid)
             {
+                if(model != null)
+                    { 
 
                 foreach (Question item in model)
                 {
                     string UserID = user.Id;
                     item.UserID = UserID;
-                    //if(item.UserID ==db.CompletedSurveys.UserID) {
-                        
-                    //db.CompletedSurveys.QuestionAnswered.Add(item); //pickwitch survey, called surveys
-                    db.SaveChanges();
+                    cs.QAList.Add(item);
+                    cs.AnswerGivenBool = item.AnswerOptionBool;
+                    cs.QuestionText = item.QuestionText;
+                    cs.RespondantID = UserID;
+                    db.CompletedSurveys.Add(cs);
+                    db.SaveChanges();                  
+
                 }
-                return View();
+                return View();}
             }
             return View();
 
