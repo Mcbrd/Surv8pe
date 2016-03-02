@@ -17,8 +17,11 @@ namespace SurvApe.Models
         public bool AnswerOptionBool { get; set; }
         public QuestionType Type { get; set; }
         public string UserID { get; set; }
-
-
-
+        public virtual List<Answer> Answers { set; get; }
+        public IEnumerable<int> AvailableAnswer => Enumerable.Range(1, 10);
+        public Question()
+        {
+            Answers = new List<Answer>();
+        }
     }
 }

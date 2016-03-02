@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace SurvApe.Models
 {
@@ -13,10 +14,13 @@ namespace SurvApe.Models
         public string Title { get; set; }
         public virtual Pollster pollster { get; set; }
         public string UserID { get; set; }
-        public List<TrueOrFalseQuestion> TF{ get; set; }//Icollection or List
+        public List<Question> questionList{ get; set; }//Icollection or List //public virtual ICollection<Question> Questions { set; get; }
+        public Question question { get; set; }                                             
+        [Display(Name = "Answer")]
+        public int SelectedAnswer { get; set; }
         public Survey()
         {
-            TF = new List<TrueOrFalseQuestion>();
+            questionList = new List<Question>();
         }
     }
 }

@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<SurvApe.Models.Question>
+<script src="http://code.jquery.com/jquery-latest.js"
+        type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+     $('#btnRadio').click(function () {
+          var checkedradio = $('[name="data"]:radio:checked').val();
+          $("#sel").html("Selected Value: " + checkedradio);
+      });
+    });
+</script>
+
+@using (Html.BeginForm("Submit", "Questions"))
+{
+    <form>
+        <ol class="listQuestion">
+            @foreach (var item in Model)
+            {
+                @Html.DisplayFor(modelItem => item.Title)
+                <li class="listQuestion">
+                   <b>True</b> @Html.RadioButton(item.QuestionText, item.Answers, new { id=item.ID, value = "true" })
+                   <b>False</b> @Html.RadioButton(item.QuestionText, item.Answers, new { id = @item.ID, value = "false" })
+                   <p id="sel"></p><br />
+
+                </li>
+            }
+
+        </ol>
+        @*<input id="btnRadio" type="button" value="Get Selected Value" />*@
+        <input id="btnRadio" type="submit" value="submit" />
+
+    </form>
+}
+
+
+@*@Html.RadioButton("true", !item.AnswerOptionBool) True
+@Html.RadioButton("false", item.AnswerOptionBool) False*@ 
+
+
+@*<b>True</b> @Html.RadioButtonFor(modelItem => item.QuestionText, item.Answers, new { name = "data", value = "true" })
+<b>False</b> @Html.RadioButtonFor(modelItem => item.QuestionText, item.Answers, new { name = "data", value = "false" })*@

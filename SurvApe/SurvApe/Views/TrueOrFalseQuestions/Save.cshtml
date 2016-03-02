@@ -1,0 +1,34 @@
+﻿
+<script>
+                    $(document).ready(function () {
+                        $("#AjaxPost").click(function () {
+                            $("#content").html("<b>Please Wait...</b>");
+
+                            var dataObject = {
+                                ContactName: $("#ContactName").val(),
+                                ContactNo : $("#ContactNo").val()
+                            };
+
+                            $.ajax({
+                                url: "@Url.Action("Save","Ajax")",
+                                type: "POST",
+                                data: dataObject,
+                                dataType: "json",
+                                success: function (data) {
+                                    if (data.toString() == "Successfully Saved!") {
+                                        $("#ContactName").val('');
+                                        $("#ContactNo").val('');
+                                        $("#content").html("<div class='success'>"+data+"</div>");
+                                    }
+                                    else {
+                                        $("#content").html("<div class='failed'>" + data + "</div>");
+                                    }
+                                },
+                                error: function () {
+                                    $("#content").html("<div class='failed'>Error! Please try again</div>");
+                                }
+                            });
+
+                        });
+                    });
+</script>

@@ -8,12 +8,18 @@
             @foreach (var item in Model)
 
             {
-                @Html.Label(item.Text)
-                <li class="listTrue">
                 
-                <b>True</b> @Html.RadioButton(item.Text, item.Answer)
-                <b>False</b> @Html.RadioButton(item.Text, item.Answer)
-                </li>
+                    
+                    @Html.Label(item.Text)
+                    <li class="listTrue">
+                        <form action="TrueOrFalseQuestions/Save()" method="post">
+
+                            <!--<input id="answer" name="answer" value="@Request.Form["answer"]" />-->
+                            <b>True</b> @Html.RadioButton(item.Text, item.Answer) @item.ID
+                            <b>False</b> @Html.RadioButton(item.Text, item.Answer) 
+                        </form>
+
+</li>
             }
 
 </ol>

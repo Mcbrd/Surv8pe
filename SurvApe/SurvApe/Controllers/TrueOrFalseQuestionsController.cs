@@ -27,6 +27,46 @@ namespace SurvApe.Controllers
         //    return Content("Answer: " + model.Answer);
         //}
 
+        public ActionResult Save()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Save(TrueOrFalseQuestion  CI)
+        {
+
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (SurvApeDB dc = new SurvApeDB())
+                    {
+                        dc.TrueOrFalseQuestions.Add(CI);
+                        dc.SaveChanges();
+
+                        message = "Successfully Saved!";
+                    }
+                }
+                catch (Exception )
+                {
+                    message = "Error! Please try again.";
+                }
+            }
+            else
+            {
+                message = "Please provide required fields value.";
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return new JsonResult { Data = message, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            else
+            {
+                ViewBag.Message = message;
+                return View(CI);
+            }
+        }
 
         // GET: TrueOrFalseQuestions/Details/5
         public ActionResult Details(int? id)
@@ -88,6 +128,7 @@ namespace SurvApe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Text,Type,Answer")] TrueOrFalseQuestion trueOrFalseQuestion)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(trueOrFalseQuestion).State = EntityState.Modified;

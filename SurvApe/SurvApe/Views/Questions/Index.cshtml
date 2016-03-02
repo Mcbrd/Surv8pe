@@ -1,57 +1,87 @@
-﻿@model IEnumerable<SurvApe.Models.Question>
+﻿@model IList<SurvApe.Models.Question>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+@using (Html.BeginForm("Submit", "Questions"))
+{
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionText)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnswerOptionString)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnswerOptionInt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnswerOptionBool)
-        </th>
-        <th></th>
-    </tr>
+    for (var i = 0; i < Model.Count; i++)
+    {
+        <ol>
+            <li>
+                @Html.DisplayFor(item => item[i].Title)
+            </li>
+            <li>
+                <b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                @Html.HiddenFor(x => x[i].ID)
+                @Html.HiddenFor(x => x[i].Answers)
+            </li>
+        </ol>
+    }
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionText)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnswerOptionString)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnswerOptionInt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnswerOptionBool)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
 }
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswerOptionString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswerOptionInt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswerOptionBool)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnswerOptionString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnswerOptionInt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnswerOptionBool)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+        </table>
+
+*@
+
+@*@Html.Partial("EditorTemplates/Question")*@
+
+        @*@Html.Partial("EditorTemplates/TrueOrFalseQuestion")  *@
+@*<b>True</b> @Html.RadioButtonFor(item=>item.QuestionText, item=>item.Answers, new { name = "dat", value = "true" })
+    <b>False</b> @Html.RadioButtonFor(item=> item[i].QuestionText, item => item[i].QuestionText, new {id = Model.ID,value = false })
+    @Html.HiddenFor(x => x[i].ID)*@

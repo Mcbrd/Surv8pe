@@ -12,7 +12,9 @@ namespace SurvApe.Models
         public virtual Pollster pollster { get; set; }
         public virtual Respondant respondant { get; set; }
         public virtual Question question { get; set; }
+
         public virtual Answer answer { get; set; }
+        public Question QuestionAnswered { get; set; }
         public string Title { get; set; }
         public string QuestionText { get; set; }
         public string AnswerGivenString { get; set; }

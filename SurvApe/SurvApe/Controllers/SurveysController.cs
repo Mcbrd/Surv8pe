@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SurvApe.Models;
+using SurvApe.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SurvApe.Controllers
 {
@@ -17,23 +20,17 @@ namespace SurvApe.Controllers
         // GET: Surveys
         public ActionResult Index()
         {
-            //List<TrueOrFalseQuestion> list = new List<TrueOrFalseQuestion>();
-
-            //list.Add(new TrueOrFalseQuestion { ID = 1, Text = "Aquafina", Answer = false });
-              //new TrueOrFalseQuestion { ID = 2, Text = "Mulshi Springs", Answer = false },
-              //new TrueOrFalseQuestion { ID = 3, Text = "Alfa Blue", Answer = false },
-              //new TrueOrFalseQuestion { ID = 4, Text = "Atlas Premium", Answer = false },
-              //new TrueOrFalseQuestion { ID = 5, Text = "Bailley", Answer = false },
-              //new TrueOrFalseQuestion { ID = 6, Text = "Bisleri", Answer = false },
-              //new TrueOrFalseQuestion { ID = 7, Text = "Himalayan", Answer = false },
-              //new TrueOrFalseQuestion { ID = 8, Text = "Cool Valley", Answer = false },
-              //new TrueOrFalseQuestion { ID = 9, Text = "Dew Drops", Answer = false },
-              //new TrueOrFalseQuestion { ID = 10, Text = "Dislaren", Answer = false });
-
-            
-
-          //  return View();
             return View(db.Surveys.ToList());
+
+                    //public ActionResult Index(int id)
+
+            //Survey survey = db.Surveys.Single(x => x.ID == id)/*.Single(x => x.ID == id)*/;
+            //var surveyViewModel = new SurveyViewModel(survey);
+            //return View(surveyViewModel);
+
+
+
+            //return View();
         }
 
         // GET: Surveys/Details/5
@@ -64,14 +61,29 @@ namespace SurvApe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title")] Survey survey)
         {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var user = UserManager.FindById(User.Identity.GetUserId());
+
             if (ModelState.IsValid)
             {
+                string UserID = user.Id;
+                survey.UserID = UserID;
                 db.Surveys.Add(survey);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(survey);
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.Surveys.Add(survey);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
+            //return View(survey);
         }
 
         // GET: Surveys/Edit/5

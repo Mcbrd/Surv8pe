@@ -52,25 +52,13 @@ namespace SurvApe.Models
         public ActionResult Create([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool,UserID")] Question question )
         {
             ApplicationDbContext context = new ApplicationDbContext();
-            Pollster pol = new Pollster();
-            Question questionProp = new Question();
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var user = UserManager.FindById(User.Identity.GetUserId());
 
-            //var Users = context.Users.Select(x => new SelectListItem
-            //{
-            //    Value = x.UserName,
-            //    Text = x.UserName
-            //});
             if (ModelState.IsValid)
             {
                 string UserID = user.Id;
                 question.UserID = UserID;
-                //do it right, not replace Primary Key
-              //  question.pollster.ID = Convert.ToInt32(pollster_ID);
-                //int pollster_ID = question.pollster.ID;
-                //pollster_ID = User.Identity.GetUserId();
-
 
                 db.Questions.Add(question);
                 db.SaveChanges();
@@ -110,6 +98,88 @@ namespace SurvApe.Models
             }
             return View(question);
         }
+
+        // [HttpPost]
+        // public ActionResult Submit([Bind(Include = "ID,Title,QuestionText,AnswerGivenString,AnswerGivenInt,AnswerGivenBool, userID")] CompletedSurvey completedSurvey)
+        // {
+
+        ////add user id to compsurvey
+
+
+        //     ApplicationDbContext context = new ApplicationDbContext();
+        //     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+        //     var user = UserManager.FindById(User.Identity.GetUserId());
+        //     string userID = user.Id;
+        //     completedSurvey.UserID = userID;
+
+        //     if (ModelState.IsValid)
+        //     {
+        //         db.CompletedSurveys.Add(completedSurvey);
+        //         db.SaveChanges();
+        //         return RedirectToAction("Index");
+        //     }
+
+        //     return View(completedSurvey);
+        // }
+
+
+        [HttpPost]
+        public ActionResult Submit(List<Question> model)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var user = UserManager.FindById(User.Identity.GetUserId());
+
+            if (ModelState.IsValid)
+            {
+
+                foreach (Question item in model)
+                {
+                    string UserID = user.Id;
+                    item.UserID = UserID;
+                    //if(item.UserID ==db.CompletedSurveys.UserID) {
+                        
+                    //db.CompletedSurveys.QuestionAnswered.Add(item); //pickwitch survey, called surveys
+                    db.SaveChanges();
+                }
+                return View();
+            }
+            return View();
+
+        }
+
+
+        //[HttpPost]
+
+        //public ActionResult Submit([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool")] Question question) //nullable for testing answers etc. nullint? surveyID, int? questionID, int? AnswerID,
+        //{
+
+        //    Answer answer = new Answer();
+        //    answer.AnswerGivenBool = question.AnswerOptionBool;
+
+
+ 
+        //    ApplicationDbContext context = new ApplicationDbContext();
+        //    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+        //    var user = UserManager.FindById(User.Identity.GetUserId());
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        //db.Entry(question).State= EntityState.Modified; causes race condition
+        //        string UserID = user.Id;
+        //        answer.UserID = UserID;
+        //        //question.Answers.Add(answer);
+
+
+        //        //db.Questions.Add(question.AnswerOptionBool);
+        //        //db.Answers.Add(answer);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View();//Question
+        //}
 
         // GET: Questions/Delete/5
         public ActionResult Delete(int? id)
