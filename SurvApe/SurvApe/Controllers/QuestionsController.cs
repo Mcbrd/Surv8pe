@@ -18,9 +18,23 @@ namespace SurvApe.Models
 
 
         // GET: Questions
-        public ActionResult Index()
+        public ActionResult Index(Survey survey, Question question)
         {
-            return View(db.Questions.ToList());
+            survey = (Survey)TempData["survey"];
+            List<Question> questionlist = new List<Question>();
+            foreach( Question item in db.Questions)
+            {
+                if(survey.ID ==item.SurveyID)
+                {
+                    questionlist.Add(item);
+
+                    return View(questionlist.ToList());
+
+                }
+                         
+            }
+            return View(db.Questions.ToList());            
+
         }
 
         // GET: Questions/Details/5
@@ -69,6 +83,7 @@ namespace SurvApe.Models
                     survey.questionList.Add(q);
                 }
                 db.Surveys.Add(survey);
+                db.SaveChanges();
                 //db.Questions.Add(question);
                 //db.SaveChanges();
                 return RedirectToAction("Create" );

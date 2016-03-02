@@ -18,8 +18,10 @@ namespace SurvApe.Controllers
         private SurvApeDB db = new SurvApeDB();
         Models.TrueOrFalseQuestion tf = new TrueOrFalseQuestion();
         // GET: Surveys
-        public ActionResult Index()
+        public ActionResult Index(Survey survey)
         {
+            TempData["survey"] = survey;
+
             return View(db.Surveys.ToList());
 
                     //public ActionResult Index(int id)
