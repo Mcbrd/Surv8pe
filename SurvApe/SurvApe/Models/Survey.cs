@@ -21,6 +21,7 @@ namespace SurvApe.Models
         public Survey()
         {
             questionList = new List<Question>();
+
         }
     }
 }

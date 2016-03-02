@@ -49,8 +49,11 @@ namespace SurvApe.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool,UserID")] Question question )
+        public ActionResult Create([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool,UserID, SurveyID")] Question question, Survey survey )
         {
+            List<Question> QuestList = new List<Question>();
+            survey = (Survey) TempData["survey"];
+            string title = survey.Title;
             ApplicationDbContext context = new ApplicationDbContext();
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -59,14 +62,21 @@ namespace SurvApe.Models
             {
                 string UserID = user.Id;
                 question.UserID = UserID;
-
-                db.Questions.Add(question);
-                db.SaveChanges();
-                return RedirectToAction("Index" );
+                question.SurveyID = survey.ID;
+                QuestList.Add(question);
+                foreach(Question q in QuestList)
+                {
+                    survey.questionList.Add(q);
+                }
+                db.Surveys.Add(survey);
+                //db.Questions.Add(question);
+                //db.SaveChanges();
+                return RedirectToAction("Create" );
             }
 
-            return View();//Question
+            return View("Create");//Question
         }
+
 
         // GET: Questions/Edit/5
         public ActionResult Edit(int? id)

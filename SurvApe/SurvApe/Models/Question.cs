@@ -19,6 +19,8 @@ namespace SurvApe.Models
         public string UserID { get; set; }
         public virtual List<Answer> Answers { set; get; }
         public IEnumerable<int> AvailableAnswer => Enumerable.Range(1, 10);
+        public int SurveyID { get; set; }
+
         public Question()
         {
             Answers = new List<Answer>();

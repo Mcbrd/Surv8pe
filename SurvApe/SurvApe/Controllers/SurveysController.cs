@@ -64,14 +64,14 @@ namespace SurvApe.Controllers
             ApplicationDbContext context = new ApplicationDbContext();
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var user = UserManager.FindById(User.Identity.GetUserId());
-
+            TempData["survey"] = survey;
             if (ModelState.IsValid)
             {
                 string UserID = user.Id;
                 survey.UserID = UserID;
                 db.Surveys.Add(survey);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Questions");
             }
 
             return View(survey);
