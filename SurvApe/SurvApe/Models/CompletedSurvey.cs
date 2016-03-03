@@ -22,6 +22,10 @@ namespace SurvApe.Models
         public List<Question> QAList = new List<Question>();
         public string UserID { get; set; }
         public string RespondantID { get; set; }
+        public string PollsterID { get; set; }
+
+        public int SurveyID { get; set; }
+
 
 
     }

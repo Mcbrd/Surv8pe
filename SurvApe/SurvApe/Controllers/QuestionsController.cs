@@ -40,24 +40,6 @@ namespace SurvApe.Models
             return View(viewList);
 
         }
-        //public ActionResult Index(Survey survey, Question question)
-        //{
-        //    survey = (Survey)TempData["survey"];
-        //    List<Question> localquestionlist = new List<Question>();
-        //    foreach( Question item in db.Questions)
-        //    {
-        //        if(survey.ID ==item.SurveyID)
-        //        {
-        //            localquestionlist.Add(item);
-
-        //            return View(localquestionlist.ToList());
-
-        //        }
-
-        //    }
-        //    return View(db.Questions.ToList());            
-
-        //}
 
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
@@ -98,7 +80,7 @@ namespace SurvApe.Models
             if (ModelState.IsValid)
             {
                 string UserID = user.Id;
-                question.UserID = UserID;
+                question.PollsterID = UserID;
                 question.SurveyID = survey.ID;
                 QuestList.Add(question);
                 foreach(Question q in QuestList)
@@ -107,12 +89,11 @@ namespace SurvApe.Models
                 }
                 db.Surveys.Add(survey);
                 db.SaveChanges();
-                //db.Questions.Add(question);
-                //db.SaveChanges();
+     
                 return RedirectToAction("Create" );
             }
 
-            return View("Create");//Question
+            return View("Create");
         }
 
 
@@ -147,29 +128,6 @@ namespace SurvApe.Models
             return View(question);
         }
 
-        // [HttpPost]
-        // public ActionResult Submit([Bind(Include = "ID,Title,QuestionText,AnswerGivenString,AnswerGivenInt,AnswerGivenBool, userID")] CompletedSurvey completedSurvey)
-        // {
-
-        ////add user id to compsurvey
-
-
-        //     ApplicationDbContext context = new ApplicationDbContext();
-        //     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-        //     var user = UserManager.FindById(User.Identity.GetUserId());
-        //     string userID = user.Id;
-        //     completedSurvey.UserID = userID;
-
-        //     if (ModelState.IsValid)
-        //     {
-        //         db.CompletedSurveys.Add(completedSurvey);
-        //         db.SaveChanges();
-        //         return RedirectToAction("Index");
-        //     }
-
-        //     return View(completedSurvey);
-        // }
-
 
         [HttpPost]
         public ActionResult Submit(List<Question> model)
@@ -187,7 +145,9 @@ namespace SurvApe.Models
                 {
                     string UserID = user.Id;
                     item.UserID = UserID;
+                        cs.PollsterID = item.PollsterID;
                     cs.QAList.Add(item);
+                        cs.SurveyID = item.SurveyID;
                     cs.AnswerGivenBool = item.AnswerOptionBool;
                     cs.QuestionText = item.QuestionText;
                     cs.RespondantID = UserID;
@@ -195,43 +155,12 @@ namespace SurvApe.Models
                     db.SaveChanges();                  
 
                 }
-                return View();}
+                return View();
+                }
             }
             return View();
 
         }
-
-
-        //[HttpPost]
-
-        //public ActionResult Submit([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool")] Question question) //nullable for testing answers etc. nullint? surveyID, int? questionID, int? AnswerID,
-        //{
-
-        //    Answer answer = new Answer();
-        //    answer.AnswerGivenBool = question.AnswerOptionBool;
-
-
- 
-        //    ApplicationDbContext context = new ApplicationDbContext();
-        //    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-        //    var user = UserManager.FindById(User.Identity.GetUserId());
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        //db.Entry(question).State= EntityState.Modified; causes race condition
-        //        string UserID = user.Id;
-        //        answer.UserID = UserID;
-        //        //question.Answers.Add(answer);
-
-
-        //        //db.Questions.Add(question.AnswerOptionBool);
-        //        //db.Answers.Add(answer);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View();//Question
-        //}
 
         // GET: Questions/Delete/5
         public ActionResult Delete(int? id)

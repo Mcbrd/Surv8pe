@@ -27,6 +27,7 @@ namespace SurvApe.Models
         public bool Employed { get; set; }
         public int PoliticalLeaning { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
+        public virtual string UserID { get; set; }
 
 
 
@@ -37,5 +38,5 @@ namespace SurvApe.Models
 
 
 
-    }
+}
 }

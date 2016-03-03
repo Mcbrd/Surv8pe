@@ -52,6 +52,7 @@ namespace SurvApe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Title")] Survey survey)
         {
             ApplicationDbContext context = new ApplicationDbContext();
@@ -61,7 +62,7 @@ namespace SurvApe.Controllers
             if (ModelState.IsValid)
             {
                 string UserID = user.Id;
-                survey.UserID = UserID;
+                survey.PollsterID = UserID;
                 db.Surveys.Add(survey);
                 db.SaveChanges();
                 return RedirectToAction("Create", "Questions");

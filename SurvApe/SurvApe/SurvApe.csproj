@@ -240,6 +240,14 @@
     <Compile Include="Migrations\201603022350419_respondant id.Designer.cs">
       <DependentUpon>201603022350419_respondant id.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603031510517_id.cs" />
+    <Compile Include="Migrations\201603031510517_id.Designer.cs">
+      <DependentUpon>201603031510517_id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603031517455_i.cs" />
+    <Compile Include="Migrations\201603031517455_i.Designer.cs">
+      <DependentUpon>201603031517455_i.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -422,6 +430,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603022350419_respondant id.resx">
       <DependentUpon>201603022350419_respondant id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603031510517_id.resx">
+      <DependentUpon>201603031510517_id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603031517455_i.resx">
+      <DependentUpon>201603031517455_i.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
