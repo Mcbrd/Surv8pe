@@ -21,6 +21,9 @@ namespace SurvApe.Models
 
         public ActionResult Index(int? id)
         {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var user = UserManager.FindById(User.Identity.GetUserId());
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -31,13 +34,28 @@ namespace SurvApe.Models
             {
                 return HttpNotFound();
             }
-         
-            foreach(Question item in survey.questionList)
+            if(user.Id == survey.PollsterID)
+            {
+                var answer= from a in db.CompletedSurveys
+                            where a.AnswerGivenBool == true
+                            select a;
+                
+                    foreach (Question item in survey.questionList)
+                {
+                    viewList.Add(item);
+                }
+                //return View("CompletedSurveyQuestion", viewList);
+
+                return View("Stats", viewList);
+            }
+            else {foreach(Question item in survey.questionList)
             {
                 viewList.Add(item);
             }
             
-            return View(viewList);
+            return View(viewList); }
+         
+            
 
         }
 

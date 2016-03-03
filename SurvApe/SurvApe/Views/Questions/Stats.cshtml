@@ -1,0 +1,35 @@
+﻿
+@model IList<SurvApe.Models.Question>
+@using System.Linq
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if(Model != null)
+
+{
+ 
+
+    for (var i = 0; i < Model.Count; i++)
+    {
+
+        <ol>
+            <li>
+                @Html.DisplayFor(item => item[i].QuestionText)
+            </li>
+            <li>
+
+                <b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool) <b>50%</b>
+                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                @Html.HiddenFor(x => x[i].ID)
+                @Html.HiddenFor(x => x[i].AnswerOptionBool)
+                @Html.HiddenFor(x => x[i].QuestionText)
+                @Html.HiddenFor(x => x[i].UserID)
+                @Html.HiddenFor(x => x[i].PollsterID)
+                @Html.HiddenFor(x => x[i].SurveyID)
+
+            </li>
+        </ol>
+    }
+}
