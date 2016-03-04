@@ -15,39 +15,28 @@
             @Html.ActionLink("Back to List", "Index")
             </p>
 
-    foreach(Question qt in Model.Item2)
+    //foreach(Question qt in Model.Item2)
     {
         for (var i = 0; i < Model.Item2.Count; i++)
         {
 
         <ol>
             <li>
-                @qt.QuestionText
-
-                @ViewBag.Percent[i]
-                
+                @Html.DisplayFor(item => item.Item2[i].QuestionText)
+                @ViewBag.Percent[i]              
             </li>
         </ol>
         }
     }
-            @Html.DisplayFor(item1 => item1.Item1)
+            @*@Html.DisplayFor(item1 => item1.Item1)*@
     foreach(CompletedSurvey cs in Model.Item1)
-    {
+    { 
         <ol>
             <li>
                 @*@cs.QuestionText*@
                 @cs.AnswerGivenBool
                 @*@ViewBag.Percent*@
-            </li>
-           
-        </ol>
-       
+            </li>          
+        </ol>      
     }
-    @*foreach(Question q in Model.Item2)
-    {
-        @Html.DisplayFor(item2 => item2.Item2[0].QuestionText)
-      
-    }*@
-
-
 }

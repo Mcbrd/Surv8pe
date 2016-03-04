@@ -37,30 +37,15 @@ namespace SurvApe.Models
             }
             if(user.Id == survey.PollsterID)
             {
-                var QAnswers = db.CompletedSurveys.Where(c => c.SurveyID == c.SurveyID).ToList();
-                var QACount = QAnswers.Count();
-
-                var QATrue = QAnswers.Where(c => c.AnswerGivenBool == true).ToList();
-                var QATrueCount = QATrue.Count();
-                //decimal Percent = (Convert.ToDecimal(QATrueCount)/Convert.ToDecimal(QACount)) ;
-
-                //foreach (CompletedSurvey c in db.CompletedSurveys)
-                //{
-                //    foreach (char q in c.QuestionText)
-                //    {
-                //        List<string> qt= new List<string>();
-                //        qt.Add(c.QuestionText + q);
-
-                //    }
-                //}                
-                List<Question> lastHope = survey.questionList;
+  
+                List<Question> lastHope = survey.questionList; 
 
                 List<decimal> decimalList = new List<decimal>();
                 foreach (Question i in lastHope)
                 {
-
- var q2 = from a in db.CompletedSurveys
-                         where a.SurveyID == id-1 //hack to get id match
+                       
+                     var q2 = from a in db.CompletedSurveys
+                         where a.SurveyID == i.SurveyID 
                          select a;
                 List<CompletedSurvey> allAnswers = q2.ToList();
                 decimal totalResponses = allAnswers.Count();
@@ -77,11 +62,8 @@ namespace SurvApe.Models
                 decimal trueResponse = trueAnswers.Count();
                 decimal Percent = trueResponse / totalResponses;
                     decimalList.Add(Percent);
-
-                }
-
-               
-
+            }
+              
                 var query = from a in db.CompletedSurveys
                             where a.SurveyID == id - 1
                             select a;
@@ -90,24 +72,15 @@ namespace SurvApe.Models
                             where a.AnswerGivenBool == true
                             select a;
 
-                //var answerPercent = from ans in db.CompletedSurveys
-                //                    where ans.SurveyID == ans.SurveyID
-                //                    select ans.SurveyID/(ans.AnswerGivenBool=true);
-
-                //List < CompletedSurvey > secondList = query.ToList() ;
-
-
                 List<CompletedSurvey> secondList = new List<CompletedSurvey>();
                 foreach (CompletedSurvey dud in query)
                 {
                     if (secondList.Contains(dud))
                         break;
                     else secondList.Add(dud);
-                        
-                    //query.ToList();
+  
                 }
               
-
                 csList = secondList;
 
                 var question = from q in db.Questions
@@ -117,8 +90,6 @@ namespace SurvApe.Models
                 List<Question> QuestionList = question.ToList();
 
                 qList = lastHope;
-                //qList = QuestionList;
-
                 var tupleModel = new Tuple<List<CompletedSurvey>, List<Question>>(csList, qList);
                 ViewBag.Percent = decimalList;
                 foreach (Question item in survey.questionList)
