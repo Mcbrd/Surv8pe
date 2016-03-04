@@ -1,0 +1,38 @@
+﻿@using SurvApe.Models;
+@model Tuple<List<CompletedSurvey>, List<Question>>
+@{
+    ViewBag.Title = "tupleModel";
+}
+
+<h2>tupleModel</h2>
+
+@if (Model != null) {
+
+    @Html.DisplayFor(item1 => item1.Item1)
+
+            <p>
+
+            @Html.ActionLink("Back to List", "Index")
+            </p>
+
+
+            @Html.DisplayFor(item1 => item1.Item1)
+    foreach(CompletedSurvey cs in Model.Item1)
+    {
+        <ol>
+            <li>
+                @cs.QuestionText
+                @cs.AnswerGivenBool
+            </li>
+           
+        </ol>
+       
+    }
+    foreach(Question q in Model.Item2)
+    {
+        @Html.DisplayFor(item2 => item2.Item2[0].QuestionText)
+      
+    }
+
+
+}

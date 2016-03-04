@@ -375,6 +375,7 @@
     <Content Include="Views\Shared\EditorTemplates\Question.cshtml" />
     <Content Include="Views\Questions\Submit.cshtml" />
     <Content Include="Views\Questions\Stats.cshtml" />
+    <Content Include="Views\Questions\tupleModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

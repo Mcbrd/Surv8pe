@@ -14,7 +14,8 @@ namespace SurvApe.Models
     public class QuestionsController : Controller
     {
         private SurvApeDB db = new SurvApeDB();
-
+        public List<CompletedSurvey> csList = new List<CompletedSurvey>();
+        public List<Question> qList = new List<Question>();
 
 
         // GET: Questions
@@ -36,26 +37,51 @@ namespace SurvApe.Models
             }
             if(user.Id == survey.PollsterID)
             {
+                var QAnswers = db.CompletedSurveys.Where(c => c.QuestionText == c.QuestionText).ToList();
+                var QACount = QAnswers.Count();
+
+                var QATrue = QAnswers.Where(c => c.AnswerGivenBool == true).ToList();
+                var QATrueCount = QATrue.Count();
+
+                decimal Percent = Convert.ToDecimal(QATrueCount/QACount) ;
+
                 var answer= from a in db.CompletedSurveys
                             where a.AnswerGivenBool == true
                             select a;
+                //var answerPercent = from ans in db.CompletedSurveys
+                //                    where ans.SurveyID == ans.SurveyID
+                //                    select ans.SurveyID/(ans.AnswerGivenBool=true);
+
+
                 
-                    foreach (Question item in survey.questionList)
+                List < CompletedSurvey > secondList = answer.ToList() ;
+                csList = secondList;
+
+                var question = from q in db.Questions
+                               where q.AnswerOptionBool == true
+                               select q;
+                
+                List<Question> QuestionList = question.ToList();
+                qList = QuestionList;
+
+                var tupleModel = new Tuple<List<CompletedSurvey>, List<Question>>(csList, qList);
+
+                foreach (Question item in survey.questionList)
                 {
                     viewList.Add(item);
                 }
-                //return View("CompletedSurveyQuestion", viewList);
+                return View("tupleModel", tupleModel);
 
-                return View("Stats", viewList);
             }
-            else {foreach(Question item in survey.questionList)
+            else
+            {
+                foreach (Question item in survey.questionList)
             {
                 viewList.Add(item);
             }
             
-            return View(viewList); }
-         
-            
+            return View(viewList);
+            }
 
         }
 
@@ -145,7 +171,6 @@ namespace SurvApe.Models
             }
             return View(question);
         }
-
 
         [HttpPost]
         public ActionResult Submit(List<Question> model)
