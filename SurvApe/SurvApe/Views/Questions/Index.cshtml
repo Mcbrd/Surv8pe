@@ -16,6 +16,8 @@
                 @Html.DisplayFor(item => item[i].QuestionText)
            </li >
             <li>
+                @*<b>True</b> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, new { value = true })*@
+
 
                 <b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
                 <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)

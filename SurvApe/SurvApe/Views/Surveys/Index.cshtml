@@ -14,28 +14,19 @@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th></th>
     </tr>
 @if (Model != null)
 {
 foreach (var item in Model)
 {
-
     <tr>
-        <td>
-                  
-                @Html.DisplayFor(modelItem => item.Title)
-            
+        <td>                  
+                @Html.DisplayFor(modelItem => item.Title)            
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
             @Html.ActionLink("Fill Out Survey", "Index", "Questions", new { id = item.ID }, null)
-
-
         </td>
     </tr>
-}
+    }
 }
     </table>

@@ -26,8 +26,6 @@ namespace SurvApe.Controllers
             //    Value = x.UserName,
             //    Text = x.UserName
             //});
-
-
             return View(db.Pollsters.ToList());
         }
 
