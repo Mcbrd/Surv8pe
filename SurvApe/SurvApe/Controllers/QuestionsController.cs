@@ -60,12 +60,12 @@ namespace SurvApe.Models
                     }
                 }
                 decimal trueResponse = trueAnswers.Count();
-                decimal Percent = trueResponse / totalResponses;
+                decimal Percent = (trueResponse / totalResponses) * 100;//percent display
                     decimalList.Add(Percent);
             }
               
                 var query = from a in db.CompletedSurveys
-                            where a.SurveyID == id - 1
+                            where a.SurveyID == id - 1//id match between tables
                             select a;
 
                 var answer= from a in db.CompletedSurveys

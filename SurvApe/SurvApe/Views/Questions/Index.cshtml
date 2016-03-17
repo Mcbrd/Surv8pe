@@ -16,11 +16,11 @@
                 @Html.DisplayFor(item => item[i].QuestionText)
            </li >
             <li>
-                @*<b>True</b> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, new { value = true })*@
+                <b>True</b> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, "true", new { value = true })  @*set to false, nullable...?*@
+                <b>False</b> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, "false", new { value = false })
 
-
-                <b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
-                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                @*<b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)*@
                 @Html.HiddenFor(x => x[i].ID)
                 @Html.HiddenFor(x => x[i].AnswerOptionBool)
                 @Html.HiddenFor(x => x[i].QuestionText)

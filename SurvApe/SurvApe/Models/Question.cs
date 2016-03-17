@@ -15,7 +15,7 @@ namespace SurvApe.Models
         
         public string QuestionText { get; set; }
         public string AnswerOptionString { get; set; }
-        public bool AnswerOptionBool { get; set; }
+        public bool? AnswerOptionBool { get; set; }
         public QuestionType Type { get; set; }
         public string UserID { get; set; }
         public IEnumerable<int> AvailableAnswer => Enumerable.Range(1, 10);

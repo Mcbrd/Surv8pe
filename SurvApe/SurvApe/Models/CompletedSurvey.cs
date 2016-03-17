@@ -18,7 +18,7 @@ namespace SurvApe.Models
         public string Title { get; set; }
         public string QuestionText { get; set; }
         public string AnswerGivenString { get; set; }
-        public bool AnswerGivenBool { get; set; }
+        public bool? AnswerGivenBool { get; set; }
         public List<Question> QAList = new List<Question>();
         public string UserID { get; set; }
         public string RespondantID { get; set; }
