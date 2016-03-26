@@ -38,7 +38,72 @@ namespace SurvApe.Models
             if(user.Id == survey.PollsterID)
             {
   
-                List<Question> lastHope = survey.questionList; 
+                List<Question> lastHope = survey.questionList;
+
+                List<decimal> amultidecimalList = new List<decimal>();
+                List<decimal> bmultidecimalList = new List<decimal>();
+                List<decimal> cmultidecimalList = new List<decimal>();
+                List<decimal> dmultidecimalList = new List<decimal>();
+
+                foreach (Question i in lastHope)
+                {
+                    var multichoice = from m in db.CompletedSurveys
+                                      where m.SurveyID == i.SurveyID //change to question type multiple choice(add multi to database)
+                                      select m;
+                    List<CompletedSurvey> multiAnswers = multichoice.ToList();
+                    decimal multiResponses = multiAnswers.Count();
+                    List<CompletedSurvey> AAnswers = new List<CompletedSurvey>();
+                    List<CompletedSurvey> BAnswers = new List<CompletedSurvey>();
+                    List<CompletedSurvey> CAnswers = new List<CompletedSurvey>();
+                    List<CompletedSurvey> DAnswers = new List<CompletedSurvey>();
+
+                    foreach (CompletedSurvey a in multiAnswers)
+                    {
+                        if (a.AnswerGivenString == "A")
+                        {
+                            AAnswers.Add(a);
+                        }
+                    }
+                    foreach (CompletedSurvey b in multiAnswers)
+                    {
+                        if (b.AnswerGivenString == "B")
+                        {
+                            BAnswers.Add(b);
+                        }
+                    }
+                    foreach (CompletedSurvey c in multiAnswers)
+                    {
+                        if (c.AnswerGivenString == "C")
+                        {
+                            CAnswers.Add(c);
+                        }
+                    }
+                    foreach (CompletedSurvey d in multiAnswers)
+                    {
+                        if (d.AnswerGivenString == "D")
+                        {
+                            DAnswers.Add(d);
+                        }
+                    }
+                    decimal aResponse = AAnswers.Count();
+                    decimal aPercent = (aResponse / multiResponses) * 100;
+                    amultidecimalList.Add(aPercent);
+                    ViewBag.aPercent = amultidecimalList;
+                    decimal bResponse = BAnswers.Count();
+                    decimal bPercent = (bResponse / multiResponses) * 100;
+                    bmultidecimalList.Add(bPercent);
+                    ViewBag.bPercent = bmultidecimalList;
+                    decimal cResponse = CAnswers.Count();
+                    decimal cPercent = (cResponse / multiResponses) * 100;
+                    cmultidecimalList.Add(cPercent);
+                    ViewBag.cPercent = cmultidecimalList;
+                    decimal dResponse = DAnswers.Count();
+                    decimal dPercent = (dResponse / multiResponses) * 100;
+                    dmultidecimalList.Add(dPercent);
+                    ViewBag.dPercent = dmultidecimalList;
+
+                }
+
 
                 List<decimal> decimalList = new List<decimal>();
                 foreach (Question i in lastHope)
@@ -137,7 +202,7 @@ namespace SurvApe.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionInt,AnswerOptionBool,UserID, SurveyID")] Question question, Survey survey )
+        public ActionResult Create([Bind(Include = "ID,Title,QuestionText,AnswerOptionString,AnswerOptionBool,Type,UserID,SurveyID")] Question question, Survey survey )
         {
             List<Question> QuestList = new List<Question>();
             survey = (Survey) TempData["survey"];
@@ -214,14 +279,15 @@ namespace SurvApe.Models
                 {
                     string UserID = user.Id;
                     item.UserID = UserID;
-                        cs.PollsterID = item.PollsterID;
+                    cs.PollsterID = item.PollsterID;
                     cs.QAList.Add(item);
-                        cs.SurveyID = item.SurveyID;
+                    cs.SurveyID = item.SurveyID;
                     cs.AnswerGivenBool = item.AnswerOptionBool;
                     cs.QuestionText = item.QuestionText;
+                    cs.AnswerGivenString = item.AnswerOptionString;
                     cs.RespondantID = UserID;
                     db.CompletedSurveys.Add(cs);
-                    db.SaveChanges();                  
+                    db.SaveChanges();
 
                 }
                 return View();

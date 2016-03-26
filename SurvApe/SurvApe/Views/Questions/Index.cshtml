@@ -10,7 +10,8 @@
 
     for (var i = 0; i < Model.Count; i++)
     {
-
+        if (Model[i].Type == SurvApe.Models.QuestionType.TrueOrFalse)
+        {
         <ol>
             <li>
                 @Html.DisplayFor(item => item[i].QuestionText)
@@ -27,6 +28,56 @@
                 @Html.HiddenFor(x => x[i].UserID)
                 @Html.HiddenFor(x => x[i].PollsterID)
                 @Html.HiddenFor(x => x[i].SurveyID)
+                @Html.HiddenFor(x => x[i].Type)
+
+
+            </li>
+        </ol>
+        }
+        if (Model[i].Type == SurvApe.Models.QuestionType.Text)
+        {
+            <ol>
+                <li>
+                    @Html.DisplayFor(item => item[i].QuestionText)
+                </li>
+                <li>
+                    <b>Answer</b> @Html.TextBoxFor(m => m[i].AnswerOptionString, "AnswerOptionString")  @*set to false, nullable...?*@
+
+                    @*<b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                        <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)*@
+                    @Html.HiddenFor(x => x[i].ID)
+                    @Html.HiddenFor(x => x[i].AnswerOptionBool)
+                    @Html.HiddenFor(x => x[i].QuestionText)
+                    @Html.HiddenFor(x => x[i].UserID)
+                    @Html.HiddenFor(x => x[i].PollsterID)
+                    @Html.HiddenFor(x => x[i].SurveyID)
+                    @Html.HiddenFor(x => x[i].Type)
+
+
+                </li>
+            </ol>
+        }
+
+        if (Model[i].Type == SurvApe.Models.QuestionType.MutipleChoice)
+        {
+        <ol>
+            <li>
+                @Html.DisplayFor(item => item[i].QuestionText)
+            </li>
+            <li>
+                <b>Day</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "A")  @*set to false, nullable...?*@
+                <b>Week</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "B")
+                <b>Month</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "C") 
+                <b>Never</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "D")
+
+                @Html.HiddenFor(x => x[i].ID)
+                @Html.HiddenFor(x => x[i].AnswerOptionBool)
+                @Html.HiddenFor(x => x[i].QuestionText)
+                @Html.HiddenFor(x => x[i].UserID)
+                @Html.HiddenFor(x => x[i].PollsterID)
+                @Html.HiddenFor(x => x[i].SurveyID)
+                @Html.HiddenFor(x => x[i].Type)
+                @Html.HiddenFor(x => x[i].AnswerOptionString)
 
 
 
@@ -36,66 +87,25 @@
             </li>
         </ol>
     }
+}
     <div>
         <input type="submit" value="Submit" />
     </div>
 
 }
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuestionText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnswerOptionString)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnswerOptionInt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnswerOptionBool)
-            </th>
-            <th></th>
-        </tr>
+
+    @*<table class="table">
+      
 
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuestionText)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnswerOptionString)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnswerOptionInt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnswerOptionBool)
-                </td>
-                <td>
+                  
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 </td>
             </tr>
         }
-        </table>
-
-*@
-
-@*@Html.Partial("EditorTemplates/Question")*@
-
-        @*@Html.Partial("EditorTemplates/TrueOrFalseQuestion")  *@
-@*<b>True</b> @Html.RadioButtonFor(item=>item.QuestionText, item=>item.Answers, new { name = "dat", value = "true" })
-    <b>False</b> @Html.RadioButtonFor(item=> item[i].QuestionText, item => item[i].QuestionText, new {id = Model.ID,value = false })
-    @Html.HiddenFor(x => x[i].ID)*@
+        </table>*@

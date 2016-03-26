@@ -20,8 +20,8 @@
             </li>
             <li>
 
-                <b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool) <b>50%</b>
-                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                @*<b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool) <b>50%</b>
+                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)*@
                 @Html.HiddenFor(x => x[i].ID)
                 @Html.HiddenFor(x => x[i].AnswerOptionBool)
                 @Html.HiddenFor(x => x[i].QuestionText)

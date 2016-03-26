@@ -15,17 +15,30 @@
             @Html.ActionLink("Back to List", "Index")
             </p>
 
-    //foreach(Question qt in Model.Item2)
+    for (var i = 0; i < Model.Item2.Count; i++)
     {
-        for (var i = 0; i < Model.Item2.Count; i++)
-        {
 
-        <ol>
-            
-                @Html.DisplayFor(item => item.Item2[i].QuestionText)
-                @ViewBag.Percent[i] <text>%</text>             
-        </ol>
-        }
+            <table>
+                <tr>
+                    <td> @Html.Label((i+1).ToString()) </td>
+                   <td> @Html.DisplayFor(item => item.Item2[i].QuestionText) </td>
+                    @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.TrueOrFalse)
+                    {
+                        <td> @ViewBag.Percent[i]  <text>%</text></td>
+                    }
+                    @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.MutipleChoice)
+                    {
+                        <td><text>A</text> @ViewBag.aPercent[i]  <text>%</text></td>
+                        <td><text>B</text> @ViewBag.bPercent[i]  <text>%</text></td>
+                        <td><text>C</text> @ViewBag.cPercent[i]  <text>%</text></td>
+                        <td><text>D</text> @ViewBag.dPercent[i]  <text>%</text></td>
+
+
+                    }
+
+                </tr>            
+            </table>
+        
     }
             @*@Html.DisplayFor(item1 => item1.Item1)*@
     foreach(CompletedSurvey cs in Model.Item1)
@@ -34,6 +47,7 @@
             <li>
                 @*@cs.QuestionText*@
                 @cs.AnswerGivenBool
+                @cs.AnswerGivenString
                 @*@ViewBag.Percent*@
             </li>          
         </ol>      
