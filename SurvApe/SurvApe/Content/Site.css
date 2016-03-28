@@ -1,13 +1,13 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 150px;
     padding-bottom: 20px;
     background-image: url("wall.jpg") 
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 31px;
+    padding-right: 31px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -26,4 +26,9 @@ textarea {
 
 .floatleft{
     float:left;
+}
+
+.button{
+    display: block;
+    height: 200px;
 }

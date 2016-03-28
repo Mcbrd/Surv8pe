@@ -4,39 +4,58 @@
     ViewBag.Title = "tupleModel";
 }
 
-<h2>tupleModel</h2>
+
 
 @if (Model != null) {
 
     @Html.DisplayFor(item1 => item1.Item1)
-
-            <p>
-
-            @Html.ActionLink("Back to List", "Index")
-            </p>
 
     for (var i = 0; i < Model.Item2.Count; i++)
     {
 
             <table>
                 <tr>
-                    <td> @Html.Label((i+1).ToString()) </td>
-                   <td> @Html.DisplayFor(item => item.Item2[i].QuestionText) </td>
-                    @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.TrueOrFalse)
+                    <td> @Html.Label((i + 1).ToString()) </td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayFor(item => item.Item2[i].QuestionText) </td>
+                </tr>
+    @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.TrueOrFalse)
                     {
-                        <td> @ViewBag.Percent[i]  <text>%</text></td>
-                    }
-                    @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.MutipleChoice)
-                    {
-                        <td><text>A</text> @ViewBag.aPercent[i]  <text>%</text></td>
-                        <td><text>B</text> @ViewBag.bPercent[i]  <text>%</text></td>
-                        <td><text>C</text> @ViewBag.cPercent[i]  <text>%</text></td>
-                        <td><text>D</text> @ViewBag.dPercent[i]  <text>%</text></td>
+        <tr>
+            <td> @ViewBag.Percent[i]  <text>%</text></td>
 
+        </tr>
 
-                    }
-
-                </tr>            
+    }
+    @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.MutipleChoice)
+    {
+            <tr>
+                <td><text>A</text> @ViewBag.aPercent[i]  <text>%</text></td>
+            </tr>
+            <tr>
+                <td><text>B</text> @ViewBag.bPercent[i]  <text>%</text></td>
+            </tr>
+            <tr>
+                <td><text>C</text> @ViewBag.cPercent[i]  <text>%</text></td>
+            </tr>
+            <tr>
+                <td><text>D</text> @ViewBag.dPercent[i]  <text>%</text></td>
+            </tr>
+    }
+    @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.Text)
+    {
+        <tr>
+            <td>
+                @foreach(CompletedSurvey c in @ViewBag.Text)
+                {
+                    
+                    @c.AnswerGivenString<br />
+                }
+            </td>
+        </tr>
+       
+    }
             </table>
         
     }

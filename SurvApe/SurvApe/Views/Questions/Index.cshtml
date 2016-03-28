@@ -10,102 +10,110 @@
 
     for (var i = 0; i < Model.Count; i++)
     {
-        if (Model[i].Type == SurvApe.Models.QuestionType.TrueOrFalse)
-        {
-        <ol>
-            <li>
-                @Html.DisplayFor(item => item[i].QuestionText)
-           </li >
-            <li>
-                <b>True</b> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, "true", new { value = true })  @*set to false, nullable...?*@
-                <b>False</b> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, "false", new { value = false })
-
-                @*<b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
-                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)*@
-                @Html.HiddenFor(x => x[i].ID)
-                @Html.HiddenFor(x => x[i].AnswerOptionBool)
-                @Html.HiddenFor(x => x[i].QuestionText)
-                @Html.HiddenFor(x => x[i].UserID)
-                @Html.HiddenFor(x => x[i].PollsterID)
-                @Html.HiddenFor(x => x[i].SurveyID)
-                @Html.HiddenFor(x => x[i].Type)
-
-
-            </li>
-        </ol>
-        }
-        if (Model[i].Type == SurvApe.Models.QuestionType.Text)
-        {
-            <ol>
-                <li>
-                    @Html.DisplayFor(item => item[i].QuestionText)
-                </li>
-                <li>
-                    <b>Answer</b> @Html.TextBoxFor(m => m[i].AnswerOptionString, "AnswerOptionString")  @*set to false, nullable...?*@
-
-                    @*<b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
-                        <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)*@
-                    @Html.HiddenFor(x => x[i].ID)
-                    @Html.HiddenFor(x => x[i].AnswerOptionBool)
-                    @Html.HiddenFor(x => x[i].QuestionText)
-                    @Html.HiddenFor(x => x[i].UserID)
-                    @Html.HiddenFor(x => x[i].PollsterID)
-                    @Html.HiddenFor(x => x[i].SurveyID)
-                    @Html.HiddenFor(x => x[i].Type)
-
-
-                </li>
-            </ol>
-        }
-
-        if (Model[i].Type == SurvApe.Models.QuestionType.MutipleChoice)
-        {
-        <ol>
-            <li>
-                @Html.DisplayFor(item => item[i].QuestionText)
-            </li>
-            <li>
-                <b>Day</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "A")  @*set to false, nullable...?*@
-                <b>Week</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "B")
-                <b>Month</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "C") 
-                <b>Never</b> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "D")
-
-                @Html.HiddenFor(x => x[i].ID)
-                @Html.HiddenFor(x => x[i].AnswerOptionBool)
-                @Html.HiddenFor(x => x[i].QuestionText)
-                @Html.HiddenFor(x => x[i].UserID)
-                @Html.HiddenFor(x => x[i].PollsterID)
-                @Html.HiddenFor(x => x[i].SurveyID)
-                @Html.HiddenFor(x => x[i].Type)
-                @Html.HiddenFor(x => x[i].AnswerOptionString)
+        <table>
+            <tr>
+                <td> @Html.Label((i + 1).ToString()) </td>
+            </tr>
 
 
 
 
+                @if (Model[i].Type == SurvApe.Models.QuestionType.TrueOrFalse)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(item => item[i].QuestionText)  </td>
+                    </tr>
+                       <tr>
+                        <td><text> True </text> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, "true", new { value = true }) </td>  @*set to false, nullable...?*@
+                        </tr>
+                        <tr>
+                            <td><text> False </text> @Html.RadioButtonFor(m => m[i].AnswerOptionBool, "false", new { value = false })</td>
+                        </tr>
+
+                        @*<b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                            <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)*@
+                        @Html.HiddenFor(x => x[i].ID)
+                        @Html.HiddenFor(x => x[i].AnswerOptionBool)
+                        @Html.HiddenFor(x => x[i].QuestionText)
+                        @Html.HiddenFor(x => x[i].UserID)
+                        @Html.HiddenFor(x => x[i].PollsterID)
+                        @Html.HiddenFor(x => x[i].SurveyID)
+                        @Html.HiddenFor(x => x[i].Type)
 
 
-            </li>
-        </ol>
+                    
+                    }
+                    @if (Model[i].Type == SurvApe.Models.QuestionType.Text)
+                    {
+            <tr>
+                <td> @Html.DisplayFor(item => item[i].QuestionText)</td>
+            </tr>
+            <tr>
+                <td> <text>Answer</text> @Html.TextBoxFor(m => m[i].AnswerOptionString, "AnswerOptionString")</td>  @*set to false, nullable...?*@                
+            </tr>
+
+                            @*<b>True</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)
+                                <b>False</b> @Html.CheckBoxFor(m => m[i].AnswerOptionBool)*@
+                            @Html.HiddenFor(x => x[i].ID)
+                            @Html.HiddenFor(x => x[i].AnswerOptionBool)
+                            @Html.HiddenFor(x => x[i].QuestionText)
+                            @Html.HiddenFor(x => x[i].UserID)
+                            @Html.HiddenFor(x => x[i].PollsterID)
+                            @Html.HiddenFor(x => x[i].SurveyID)
+                            @Html.HiddenFor(x => x[i].Type)
+
+
+                    }
+
+                    @if (Model[i].Type == SurvApe.Models.QuestionType.MutipleChoice)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(item => item[i].QuestionText)</td>
+                        </tr>
+                        <tr>
+                            <td><text>Day</text> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "A") </td>
+                        </tr>
+                        <tr>
+                            <td><text>Week</text> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "B")</td>
+                        </tr>
+                        <tr>
+                            <td> <text>Month</text> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "C")</td>
+                        </tr>
+                        <tr>
+                            <td> <text>Never</text> @Html.RadioButtonFor(m => m[i].AnswerOptionString, "D")</td>
+                        </tr>
+
+                        @Html.HiddenFor(x => x[i].ID)
+                        @Html.HiddenFor(x => x[i].AnswerOptionBool)
+                        @Html.HiddenFor(x => x[i].QuestionText)
+                        @Html.HiddenFor(x => x[i].UserID)
+                        @Html.HiddenFor(x => x[i].PollsterID)
+                        @Html.HiddenFor(x => x[i].SurveyID)
+                        @Html.HiddenFor(x => x[i].Type)
+                        @Html.HiddenFor(x => x[i].AnswerOptionString)
+
+
+                }
+        </table>
     }
-}
     <div>
         <input type="submit" value="Submit" />
     </div>
 
 }
 
-    @*<table class="table">
-      
+@*<table class="table">
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                  
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-        </table>*@
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+    </table>*@

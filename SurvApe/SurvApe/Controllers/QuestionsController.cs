@@ -47,6 +47,12 @@ namespace SurvApe.Models
 
                 foreach (Question i in lastHope)
                 {
+                    var textAnswer = from t in db.CompletedSurveys
+                                     where t.AnswerGivenString.Length > 1
+                                     select t;
+                    List<CompletedSurvey> tAnswer = textAnswer.ToList();
+                    ViewBag.Text = tAnswer;
+
                     var multichoice = from m in db.CompletedSurveys
                                       where m.SurveyID == i.SurveyID //change to question type multiple choice(add multi to database)
                                       select m;
