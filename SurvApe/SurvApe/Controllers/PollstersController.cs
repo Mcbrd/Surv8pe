@@ -19,13 +19,7 @@ namespace SurvApe.Controllers
         // GET: Pollsters
         public ActionResult Index()
         {
-            //ApplicationDbContext context = new ApplicationDbContext();
-            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            //var Users = context.Users.Select(x => new SelectListItem
-            //{
-            //    Value = x.UserName,
-            //    Text = x.UserName
-            //});
+         
             return View(db.Pollsters.ToList());
         }
 

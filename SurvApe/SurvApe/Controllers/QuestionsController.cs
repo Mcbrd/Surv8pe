@@ -44,6 +44,7 @@ namespace SurvApe.Models
                 List<decimal> bmultidecimalList = new List<decimal>();
                 List<decimal> cmultidecimalList = new List<decimal>();
                 List<decimal> dmultidecimalList = new List<decimal>();
+                List<CompletedSurvey> tExactAnswer = new List<CompletedSurvey>();
 
                 foreach (Question i in lastHope)
                 {
@@ -51,10 +52,17 @@ namespace SurvApe.Models
                                      where t.AnswerGivenString.Length > 1
                                      select t;
                     List<CompletedSurvey> tAnswer = textAnswer.ToList();
-                    ViewBag.Text = tAnswer;
+                    foreach (CompletedSurvey t in tAnswer)
+                    {
+                        if (t.SurveyID == i.SurveyID)
+                        {
+                            tExactAnswer.Add(t);
+                        }
+                    }
+                    ViewBag.Text = tExactAnswer;
 
                     var multichoice = from m in db.CompletedSurveys
-                                      where m.SurveyID == i.SurveyID //change to question type multiple choice(add multi to database)
+                                      where m.SurveyID == i.SurveyID 
                                       select m;
                     List<CompletedSurvey> multiAnswers = multichoice.ToList();
                     decimal multiResponses = multiAnswers.Count();

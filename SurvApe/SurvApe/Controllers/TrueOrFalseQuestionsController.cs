@@ -18,14 +18,9 @@ namespace SurvApe.Controllers
         public ActionResult Index()
         {
             return View(db.TrueOrFalseQuestions.ToList());
-                //new TrueOrFalseQuestion               {                Answer = true);
            
         }
-        //[HttpPost]
-        //public ActionResult Index(TrueOrFalseQuestion model)
-        //{
-        //    return Content("Answer: " + model.Answer);
-        //}
+        
 
         public ActionResult Save()
         {

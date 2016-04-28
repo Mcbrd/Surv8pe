@@ -36,6 +36,7 @@ namespace SurvApe.Controllers
         }
 
         // GET: Respondants/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +45,7 @@ namespace SurvApe.Controllers
         // POST: Respondants/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,FirstName,MiddleName,LastName,Address,State,Country,Zipcode,Citizenship,Age,BirthDate,Gender,Company,Salary,Ethnicity,Religion,Education,Employed,PoliticalLeaning")] Respondant respondant)
