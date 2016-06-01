@@ -45,138 +45,144 @@ namespace SurvApe.Models
                 List<decimal> cmultidecimalList = new List<decimal>();
                 List<decimal> dmultidecimalList = new List<decimal>();
                 List<CompletedSurvey> tExactAnswer = new List<CompletedSurvey>();
-
-                foreach (Question i in lastHope)
+                var compserv = from z in db.CompletedSurveys//6/1
+                               where z.SurveyID == id-1
+                               select z;
+                List<CompletedSurvey> compservlist = compserv.ToList();
+                if (compservlist.Count > 0)//6/1 handle empty answers
                 {
-                    var textAnswer = from t in db.CompletedSurveys
-                                     where t.AnswerGivenString.Length > 1
-                                     select t;
-                    List<CompletedSurvey> tAnswer = textAnswer.ToList();
-                    foreach (CompletedSurvey t in tAnswer)
+                    foreach (Question i in lastHope)
                     {
-                        if (t.SurveyID == i.SurveyID)
+                        var textAnswer = from t in db.CompletedSurveys
+                                         where t.AnswerGivenString.Length > 1
+                                         select t;
+                        List<CompletedSurvey> tAnswer = textAnswer.ToList();
+                        foreach (CompletedSurvey t in tAnswer)
                         {
-                            tExactAnswer.Add(t);
+                            if (t.SurveyID == i.SurveyID)
+                            {
+                                tExactAnswer.Add(t);
+                            }
                         }
-                    }
-                    ViewBag.Text = tExactAnswer;
+                        ViewBag.Text = tExactAnswer;
 
-                    var multichoice = from m in db.CompletedSurveys
-                                      where m.SurveyID == i.SurveyID 
-                                      select m;
-                    List<CompletedSurvey> multiAnswers = multichoice.ToList();
-                    decimal multiResponses = multiAnswers.Count();
-                    List<CompletedSurvey> AAnswers = new List<CompletedSurvey>();
-                    List<CompletedSurvey> BAnswers = new List<CompletedSurvey>();
-                    List<CompletedSurvey> CAnswers = new List<CompletedSurvey>();
-                    List<CompletedSurvey> DAnswers = new List<CompletedSurvey>();
+                        var multichoice = from m in db.CompletedSurveys
+                                          where m.SurveyID == i.SurveyID
+                                          select m;
+                        List<CompletedSurvey> multiAnswers = multichoice.ToList();
+                        decimal multiResponses = multiAnswers.Count();
+                        List<CompletedSurvey> AAnswers = new List<CompletedSurvey>();
+                        List<CompletedSurvey> BAnswers = new List<CompletedSurvey>();
+                        List<CompletedSurvey> CAnswers = new List<CompletedSurvey>();
+                        List<CompletedSurvey> DAnswers = new List<CompletedSurvey>();
 
-                    foreach (CompletedSurvey a in multiAnswers)
-                    {
-                        if (a.AnswerGivenString == "A")
+                        foreach (CompletedSurvey a in multiAnswers)
                         {
-                            AAnswers.Add(a);
+                            if (a.AnswerGivenString == "A")
+                            {
+                                AAnswers.Add(a);
+                            }
                         }
-                    }
-                    foreach (CompletedSurvey b in multiAnswers)
-                    {
-                        if (b.AnswerGivenString == "B")
+                        foreach (CompletedSurvey b in multiAnswers)
                         {
-                            BAnswers.Add(b);
+                            if (b.AnswerGivenString == "B")
+                            {
+                                BAnswers.Add(b);
+                            }
                         }
-                    }
-                    foreach (CompletedSurvey c in multiAnswers)
-                    {
-                        if (c.AnswerGivenString == "C")
+                        foreach (CompletedSurvey c in multiAnswers)
                         {
-                            CAnswers.Add(c);
+                            if (c.AnswerGivenString == "C")
+                            {
+                                CAnswers.Add(c);
+                            }
                         }
-                    }
-                    foreach (CompletedSurvey d in multiAnswers)
-                    {
-                        if (d.AnswerGivenString == "D")
+                        foreach (CompletedSurvey d in multiAnswers)
                         {
-                            DAnswers.Add(d);
+                            if (d.AnswerGivenString == "D")
+                            {
+                                DAnswers.Add(d);
+                            }
                         }
-                    }
-                    decimal aResponse = AAnswers.Count();
-                    decimal aPercent = (aResponse / multiResponses) * 100;
-                    amultidecimalList.Add(aPercent);
-                    ViewBag.aPercent = amultidecimalList;
-                    decimal bResponse = BAnswers.Count();
-                    decimal bPercent = (bResponse / multiResponses) * 100;
-                    bmultidecimalList.Add(bPercent);
-                    ViewBag.bPercent = bmultidecimalList;
-                    decimal cResponse = CAnswers.Count();
-                    decimal cPercent = (cResponse / multiResponses) * 100;
-                    cmultidecimalList.Add(cPercent);
-                    ViewBag.cPercent = cmultidecimalList;
-                    decimal dResponse = DAnswers.Count();
-                    decimal dPercent = (dResponse / multiResponses) * 100;
-                    dmultidecimalList.Add(dPercent);
-                    ViewBag.dPercent = dmultidecimalList;
+                        decimal aResponse = AAnswers.Count();
+                        decimal aPercent = (aResponse / multiResponses) * 100;
+                        amultidecimalList.Add(aPercent);
+                        ViewBag.aPercent = amultidecimalList;
+                        decimal bResponse = BAnswers.Count();
+                        decimal bPercent = (bResponse / multiResponses) * 100;
+                        bmultidecimalList.Add(bPercent);
+                        ViewBag.bPercent = bmultidecimalList;
+                        decimal cResponse = CAnswers.Count();
+                        decimal cPercent = (cResponse / multiResponses) * 100;
+                        cmultidecimalList.Add(cPercent);
+                        ViewBag.cPercent = cmultidecimalList;
+                        decimal dResponse = DAnswers.Count();
+                        decimal dPercent = (dResponse / multiResponses) * 100;
+                        dmultidecimalList.Add(dPercent);
+                        ViewBag.dPercent = dmultidecimalList;
 
+                    }
+
+
+                    List<decimal> decimalList = new List<decimal>();
+                    foreach (Question i in lastHope)
+                    {
+
+                        var q2 = from a in db.CompletedSurveys
+                                 where a.SurveyID == i.SurveyID
+                                 select a;
+                        List<CompletedSurvey> allAnswers = q2.ToList();
+                        decimal totalResponses = allAnswers.Count();
+
+                        List<CompletedSurvey> trueAnswers = new List<CompletedSurvey>();
+
+                        foreach (CompletedSurvey a in allAnswers)
+                        {
+                            if (a.AnswerGivenBool == true)
+                            {
+                                trueAnswers.Add(a);
+                            }
+                        }
+                        decimal trueResponse = trueAnswers.Count();
+                        decimal Percent = (trueResponse / totalResponses) * 100;//percent display
+                        decimalList.Add(Percent);
+                    }
+
+                    var query = from a in db.CompletedSurveys
+                                where a.SurveyID == id - 1//id match between tables
+                                select a;
+
+                    var answer = from a in db.CompletedSurveys
+                                 where a.AnswerGivenBool == true
+                                 select a;
+
+                    List<CompletedSurvey> secondList = new List<CompletedSurvey>();
+                    foreach (CompletedSurvey dud in query)
+                    {
+                        if (secondList.Contains(dud))
+                            break;
+                        else secondList.Add(dud);
+
+                    }
+
+                    csList = secondList;
+
+                    var question = from q in db.Questions
+                                   where q.AnswerOptionBool == true
+                                   select q;
+
+                    List<Question> QuestionList = question.ToList();
+
+                    qList = lastHope;
+                    var tupleModel = new Tuple<List<CompletedSurvey>, List<Question>>(csList, qList);
+                    ViewBag.Percent = decimalList;
+                    foreach (Question item in survey.questionList)
+                    {
+                        viewList.Add(item);
+                    }
+                    return View("tupleModel", tupleModel);
                 }
-
-
-                List<decimal> decimalList = new List<decimal>();
-                foreach (Question i in lastHope)
-                {
-                       
-                     var q2 = from a in db.CompletedSurveys
-                         where a.SurveyID == i.SurveyID 
-                         select a;
-                List<CompletedSurvey> allAnswers = q2.ToList();
-                decimal totalResponses = allAnswers.Count();
-
-                List<CompletedSurvey> trueAnswers = new List<CompletedSurvey>();
-
-                foreach (CompletedSurvey a in allAnswers)
-                {
-                    if (a.AnswerGivenBool == true)
-                    {
-                        trueAnswers.Add(a);
-                    }
-                }
-                decimal trueResponse = trueAnswers.Count();
-                decimal Percent = (trueResponse / totalResponses) * 100;//percent display
-                    decimalList.Add(Percent);
-            }
-              
-                var query = from a in db.CompletedSurveys
-                            where a.SurveyID == id - 1//id match between tables
-                            select a;
-
-                var answer= from a in db.CompletedSurveys
-                            where a.AnswerGivenBool == true
-                            select a;
-
-                List<CompletedSurvey> secondList = new List<CompletedSurvey>();
-                foreach (CompletedSurvey dud in query)
-                {
-                    if (secondList.Contains(dud))
-                        break;
-                    else secondList.Add(dud);
-  
-                }
-              
-                csList = secondList;
-
-                var question = from q in db.Questions
-                               where q.AnswerOptionBool == true
-                               select q;
-                
-                List<Question> QuestionList = question.ToList();
-
-                qList = lastHope;
-                var tupleModel = new Tuple<List<CompletedSurvey>, List<Question>>(csList, qList);
-                ViewBag.Percent = decimalList;
-                foreach (Question item in survey.questionList)
-                {
-                    viewList.Add(item);
-                }
-                return View("tupleModel", tupleModel);
-
+                else { return View("Empty"); }//6/1 handle empty completed surveys
             }
             else
             {
