@@ -1,4 +1,17 @@
-﻿body {
+﻿
+
+/*header {
+        padding-top: 150px;
+    padding-bottom: 20px;
+}
+.navbar-brand {  
+  float: left;  
+  padding: 15px 15px;  
+  font-size: 80px;  
+  line-height: 80px;  
+  font-family:'Facebook Letter Faces'  
+}*/  
+body {
     padding-top: 150px;
     padding-bottom: 20px;
     background-image: url("wall.jpg") 
@@ -40,3 +53,18 @@ textarea {
     display: block;
     height: 200px;
 }
+.table{
+    background-color:dodgerblue;
+}
+  table.table.table-striped resultTable tr,
+  table.table.table-striped resultTable td {
+    background-color:#808080;
+}
+
+.info{
+    background-color:dodgerblue;
+}
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: red; // Choose your own color here
+ }

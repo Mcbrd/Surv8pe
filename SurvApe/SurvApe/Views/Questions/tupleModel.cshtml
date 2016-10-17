@@ -13,11 +13,11 @@
     for (var i = 0; i < Model.Item2.Count; i++)
     {
 
-            <table>
+            <table class="table table-striped resultTable">
                 <tr>
                     <td> @Html.Label((i + 1).ToString()) </td>
                 </tr>
-                <tr>
+                <tr class="info">
                     <td> @Html.DisplayFor(item => item.Item2[i].QuestionText) </td>
                 </tr>
     @if (Model.Item2[i].Type == SurvApe.Models.QuestionType.TrueOrFalse)
@@ -33,13 +33,13 @@
             <tr>
                 <td><text>Day</text> @ViewBag.aPercent[i]  <text>%</text></td>
             </tr>
-            <tr>
+            <tr class="info">
                 <td><text>Week</text> @ViewBag.bPercent[i]  <text>%</text></td>
             </tr>
             <tr>
                 <td><text>Month</text> @ViewBag.cPercent[i]  <text>%</text></td>
             </tr>
-            <tr>
+            <tr class="info">
                 <td><text>Never</text> @ViewBag.dPercent[i]  <text>%</text></td>
             </tr>
     }

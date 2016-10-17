@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Surveys</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -24,7 +24,9 @@ foreach (var item in Model)
                 @Html.DisplayFor(modelItem => item.Title)            
         </td>
         <td>
-            @Html.ActionLink("Fill Out Survey", "Index", "Questions", new { id = item.ID }, null)
+            @*@Html.ActionLink("Fill Out Survey", "Index", "Questions", new { id = item.ID }, null)*@
+            <p><a class="btn btn-info btn-block" href='@Url.Action("Index", "Questions", new { id = item.ID }, null)'>View Survey &raquo;</a></p>
+
         </td>
     </tr>
     }
